@@ -27,6 +27,7 @@ class User:
     def __str__(self):
         return f'Пользователь {self.login}, баланс - {self.balance}'
 
+
 class Product:
 
     def __init__(self, name, price):
@@ -39,14 +40,14 @@ class Cart:
         self.user = User
         self.goods = {}
         self.__total = 0
-        
+
     def add(self, Product: Product, count=1):
         if Product.name not in self.goods.keys():
             self.goods[Product] = count
         else:
             self.goods[Product] += count
         self.__total += Product.price * count
-        
+
     def remove(self, Product: Product, count=1):
         if self.goods[Product] >= count:
             self.goods[Product] -= count
@@ -54,17 +55,17 @@ class Cart:
             count = self.goods[Product]
             del self.goods[Product]
         self.__total -= Product.price * count
-            
+
     @property
     def total(self):
         return self.__total
-    
+
     def order(self):
         if self.user.payment(self.total):
             print("Заказ оплачен")
         else:
             print("Проблема с оплатой")
-    
+
     def print_check(self):
         goods = sorted(self.goods.items(), key=lambda x: x[0].name)
         print("---Your check---")
@@ -75,14 +76,13 @@ class Cart:
         print(f"---Total: {self.total}---")
 
 
-
 billy = User('billy@rambler.ru')
 
 lemon = Product('lemon', 20)
 carrot = Product('carrot', 30)
 
 cart_billy = Cart(billy)
-print(cart_billy.user) # Пользователь billy@rambler.ru, баланс - 0
+print(cart_billy.user)  # Пользователь billy@rambler.ru, баланс - 0
 cart_billy.add(lemon, 2)
 cart_billy.add(carrot)
 cart_billy.print_check()
@@ -104,7 +104,7 @@ cart_billy.print_check()
 ---Your check---
 carrot 30 1 30
 ---Total: 30---'''
-print(cart_billy.total) # 30
+print(cart_billy.total)  # 30
 cart_billy.add(lemon, 5)
 cart_billy.print_check()
 ''' Печатает текст ниже
@@ -117,5 +117,5 @@ cart_billy.order()
 Не хватает средств на балансе. Пополните счет
 Проблема с оплатой'''
 cart_billy.user.deposit(150)
-cart_billy.order() # Заказ оплачен
-print(cart_billy.user.balance) # 20
+cart_billy.order()  # Заказ оплачен
+print(cart_billy.user.balance)  # 20
