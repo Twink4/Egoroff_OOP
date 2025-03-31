@@ -9,26 +9,26 @@ class Song:
     
 class Playlist:
     def __init__(
-        self,        
+        self       
     ):
         self.songs: list = []
         
     def __getitem__(
         self,
-        index
+        index: int
     ):
         return self.songs[index]
     
     def __setitem__(
         self,
-        index,
-        song
+        index: int,
+        song: Song
     ):
         self.songs.insert(index, song)
         
     def add_song(
         self,
-        song
+        song: Song
     ):
         self.songs.append(song)
         
