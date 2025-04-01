@@ -1,29 +1,29 @@
 
-class Person: #Родительский класс (parent)
-    
+class Person:  # Родительский класс (parent)
+
     def cal_walk(self):
         print("Я могу ходить")
-        
-    
+
     def can_breathe(self):
         print("Я могу дышать")
 
 
-class Doctor(Person): #Подкласс (Subclass)
-    
+class Doctor(Person):  # Подкласс (Subclass)
+
     def can_cure(self):
         print("Я могу лечить")
-        
+
+
 class Ortoped(Doctor):
     ...
 
-    
-class Architect(Person): #Подкласс (Subclass)
-    
+
+class Architect(Person):  # Подкласс (Subclass)
+
     def can_build(self):
         print("Я могу построить здание")
-        
-        
+
+
 d = Doctor()
 d.can_cure()
 d.cal_walk()
