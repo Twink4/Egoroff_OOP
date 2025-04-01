@@ -1,49 +1,50 @@
 class ShoppingCart:
     def __init__(
-        self        
+        self
     ):
         self.items = {}
-        
+
     def __getitem__(
         self,
         key: str
     ):
-        return self.items[key]
-    
+        return self.items.get(key, 0)
+
     def __setitem__(
         self,
         key: str,
         value: int
     ):
-        self.items.update(key, value)
-    
+        self.items[key] = value
+
     def __delitem__(
         self,
         key: str
     ):
         self.items.pop(key)
-        
+
     def add_item(
         self,
         key: str,
         count: int = 1
     ):
         if self.items.get(key):
-            self.items[key] + 1
+            self.items[key] += count
         else:
             self.items[key] = count
-        
+
     def remove_item(
         self,
         key: str,
         count: int = 1
     ):
-        if self.items[key] <= count:
-            del self.items[key]
-        else:
-            self.items[key] - count
-            
-            
+        if key in self.items.keys():
+            if self.items[key] <= count:
+                del self.items[key]
+            else:
+                self.items[key] -= count
+
+
 cart = ShoppingCart()
 
 # Add some items to the cart
