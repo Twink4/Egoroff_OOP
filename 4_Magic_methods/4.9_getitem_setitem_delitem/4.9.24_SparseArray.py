@@ -1,37 +1,31 @@
 class SparseArray:
-    
+
     def __init__(self, *args):
         self.__values = [*args]
-        
-        
+
     def __getitem__(self, index: int):
         self.__check_indexes(index)
         return self.__values[index]
-    
-    
+
     def __setitem__(self, index: int, value: int):
         self.__check_indexes(index)
         self.__values[index] = value
-    
-    
+
     def __check_indexes(self, index: int):
         if index > len(self.__values):
             self.__values.extend(None for _ in range(index - len(self.__values) + 1))
 
-
     def __delitem__(self, index: int):
         self.__values[index] = None
-        
-        
+
     def __len__(self):
         return len(self.__values)
-        
-        
+
     @property
     def values(self):
         return tuple(self.__values)
-    
-    
+
+
 array = SparseArray(1, 2, 3)
 print(array.values)
 print(array[7])
